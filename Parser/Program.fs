@@ -3,9 +3,9 @@
 let parse c =
     let parse input =
         match input with
-        | s when String.IsNullOrEmpty s -> Error "no more input"
+        | s when String.IsNullOrEmpty s -> Error '\x00'
         | s when s[0] = c -> Ok(c, s[1..])
-        | s -> s[0] |> sprintf "found %c" |> Error
+        | s -> Error s[0]
 
     parse
 
